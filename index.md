@@ -5,7 +5,8 @@ layout: default
 
 [Link to another page](./another-page.html).
 
-![Profile Picture](/docs/assets/profile.jpeg =250x)
+<img src="/oytunkuday.github.io/docs/assets/profile.jpeg" alt="Profile Picture" style="border-radius: 50%; float: right; width: 150px; height: 150px; margin-left: 20px;">
+
 
 # About Me
 
