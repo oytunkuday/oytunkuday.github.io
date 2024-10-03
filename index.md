@@ -54,6 +54,10 @@ Sabanci University, Istanbul, Turkey, 2021 - 2024
 
 # Honors & Awards
 
+### Georgia Institute of Technology
+- Graduate Research Assistantship (GRA)
+ - Tuition fee waiver and a monthly stipend
+
 ### EPFL (École Polytechnique Fédérale de Lausanne) 
 - MS Research Scholarship Program (Awarded to 3 applicants among all accepted students to CS-related MS programs)
   - Forfeited the award as I chose GATech for PhD
