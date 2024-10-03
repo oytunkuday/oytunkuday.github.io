@@ -58,7 +58,6 @@ Sabanci University, Istanbul, Turkey, 2021 - 2024
   - Includes 100% tuition fee waiver and a monthly stipend
 
 &nbsp;
-
 - MS Research Scholarship Program - EPFL 
   - Awarded to 3 applicants among all accepted students to CS-related MS programs
   - Forfeited the award as I chose GATech for PhD
