@@ -66,8 +66,6 @@ Sabanci University, Istanbul, Turkey, 2021 - 2024
 - Dean’s List of High Honor (All Semesters)
 - Extracurricular Activities Award
 
-&nbsp;
-
 * * *
 
 # Projects
@@ -104,10 +102,7 @@ Sabanci University, Istanbul, Turkey:
 
 Soon!
 
-&nbsp;
-
-
 [Link to another page](./another-page.html).
 
-
+&nbsp;
 > etc
