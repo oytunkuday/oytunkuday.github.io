@@ -19,7 +19,7 @@ Sabanci University, Istanbul, Turkey, 2024
 # Experience
 
 ### Graduate Research Assistant
-[Architecture.fail](https://https://architecture.fail) at Georgia Institute of Technology, Atlanta, GA, USA, 2024 - Now
+[Architecture.fail](https://architecture.fail) at Georgia Institute of Technology, Atlanta, GA, USA, 2024 - Now
 
 - Investigating vulnerabilities of Intel data enter CPU trusted execution environments (SGX).
 
