@@ -30,7 +30,7 @@ Sabanci University, Istanbul, Turkey, 2024
 - Investigated the feasibility of hardware-driven feedback for fuzzing of Trusted Execution Environments such as Intel SGX.
 - Examined various architectural structures and implemented side-channels.
 - Developed a templated codebase of reverse engineering, side-channel implementation and analysis tools, and documentation for microarchitecture, and for usage.
-
+- Contributed to various open-source SGX tools.
 
 ###  Software Engineer Intern
 [Valensas R&D](https://valensas.com) at Istanbul, Turkey, 2022 - 2022
