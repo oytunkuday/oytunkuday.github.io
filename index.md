@@ -6,15 +6,12 @@ layout: default
 # Education
 
 ### Ph.D. Student in Computer Science
-
 Georgia Institute of Technology, Atlanta, GA, USA, 2024 - Present
 
 ### Bachelor of Science in Electronics Engineering
-
 Sabanci University, Istanbul, Turkey, 2024
 
 ### Bachelor of Science in Computer Science and Engineering
-
 Sabanci University, Istanbul, Turkey, 2024
 
 * * *
@@ -22,13 +19,11 @@ Sabanci University, Istanbul, Turkey, 2024
 # Experience
 
 ### Graduate Research Assistant
-
 [Architecture.fail](https://https://architecture.fail) at Georgia Institute of Technology, Atlanta, GA, USA, 2024 - Now
 
 - Investigating vulnerabilities of Intel data enter CPU trusted execution environments (SGX).
 
 ### Summer Research Intern (Summer@EPFL)
-
 [HexHive Lab](https://hexhive.epfl.ch) at EPFL, Lausanne, Switzerland, 2023 - 2023
 
 - Funded by Summer@EPFL Program (Program acceptance rate is ~1.5% in 2023).
@@ -37,16 +32,22 @@ Sabanci University, Istanbul, Turkey, 2024
 - Examined various architectural structures and implemented side-channels.
 
 ###  Software Engineer Intern
-
 [Valensas R&D](https://valensas.com) at Istanbul, Turkey, 2022 - 2022
 
 - Developed front-end of a cryptocurrency exchange app (Bitronit) for Android with Jetpack Compose and Kotlin.
 
 ### Undergraduate Research Assistant 
-
 [PURE](https://pure.sabanciuniv.edu) (Program for Undergraduate Research), at Istanbul, Turkey, 2022 - 2022
 
 - Researched design of thermomechanical structures using topology optimization and developed analysis/design tools based on homogenization and topology.
+
+### Undergraduate Teaching Assistant
+Sabanci University, Istanbul, Turkey, 2021 - 2024
+
+- Assisted 1000+ students across 4 [courses](https://oytunkuday.com/#teaching) in total.
+- Graded/prepared programming assignments, exams and quizzes.
+- Teached various subjects and aided students during recitations(labs) and office hours.
+- For course lists, please refer to [teaching section](https://oytunkuday.com/#teaching).
 
 * * *
 
@@ -72,12 +73,7 @@ Sabanci University, Istanbul, Turkey, 2024
 
 # Teaching
 
-### Undergraduate Teaching Assistant
-- Assisted 1000+ students during courses in total.
-- Graded/prepared programming assignments, exams and quizzes.
-- Teached various subjects and aided students during recitations(labs) and office hours.
-
-Sabanci University, Istanbul, Turkey, 2021 - 2024:
+Sabanci University, Istanbul, Turkey:
 - Machine Learning (CS 412)
 - Database Systems (CS 306)
 - Advanced Programming (CS 204)
