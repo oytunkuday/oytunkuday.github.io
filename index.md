@@ -21,7 +21,7 @@ Sabanci University, Istanbul, Turkey, 2024
 ### Graduate Research Assistant
 [Architecture.fail](https://architecture.fail) at Georgia Institute of Technology, Atlanta, GA, USA, 2024 - Now
 
-- Investigating vulnerabilities of Intel data enter CPU trusted execution environments (SGX).
+- Investigating vulnerabilities of Intel data enter CPU trusted execution environments (SGX v2).
 
 ### Summer Research Intern (Summer@EPFL)
 [HexHive Lab](https://hexhive.epfl.ch) at EPFL, Lausanne, Switzerland, 2023 - 2023
