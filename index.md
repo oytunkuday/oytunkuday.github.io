@@ -77,6 +77,7 @@ Sabanci University, Istanbul, Turkey, 2021 - 2024
 # Projects
 
 ### Some notable projects I was involved include:
+ - Cell Mitosis Detection using Deep Learning for Assessing Breast Cancer (CV Course Project)
  - CacheFuzz: Detecting Vulnerabilities in Confidential Computing Platforms
  - Possible Applications of ML for privacy violations in smart-devices
  - Effectiveness of GPT-4 on Software Engineering and Security
