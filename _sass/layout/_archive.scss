@@ -64,8 +64,25 @@
   & + p {
     text-indent: 0;
   }
+
+  /* Consistent thumbnail sizing for portfolio excerpts */
+  img.portfolio-thumb {
+    height: 140px; /* fixed visual height */
+    width: auto;   /* preserve aspect ratio */
+    display: block;
+    margin: 0.5rem 0;
+    object-fit: contain;
+  }
 }
 
+/* Ensure consistent thumbnail size anywhere on the site (not just excerpts) */
+img.portfolio-thumb {
+  height: auto;
+  width: 450px;
+  display: block;
+  margin: 0.5rem 0;
+  object-fit: contain;
+}
 .archive__item-teaser {
   border-radius: $border-radius;
   overflow: hidden;

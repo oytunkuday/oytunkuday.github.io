@@ -1,7 +1,8 @@
 ---
-title: "Portfolio item number 1"
-excerpt: "Short description of portfolio item number 1<br/><img src='/images/500x300.png'>"
+title: "WireTap: Breaking Server SGX via DRAM Bus Interposition (2025)"
+excerpt: "ACM CCS '25 (AR: 13.9%) — Distinguished Paper Award (1.39%)<br/><a href='https://wiretap.fail'>wiretap.fail</a><br/><img class='portfolio-thumb' src='/images/wiretap-logo.png' alt='WireTap logo'>"
 collection: portfolio
+order: 1
 ---
 
-This is an item in your portfolio. It can be have images or nice text. If you name the file .md, it will be parsed as markdown. If you name the file .html, it will be parsed as HTML. 
+WireTap demonstrates a practical DRAM bus interposition attack that breaks Intel SGX attestation, enabling key extraction and forged quotes. See the project site for details and verification scripts.

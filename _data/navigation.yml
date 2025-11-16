@@ -11,23 +11,15 @@ main:
   - title: "Publications"
     url: /publications/
 
-  - title: "Talks"
-    url: /talks/    
-
   - title: "Teaching"
     url: /teaching/    
     
   - title: "Portfolio"
     url: /portfolio/
         
-  - title: "Blog Posts"
-    url: /year-archive/
-    
   - title: "CV"
-    url: /cv/
+    url: https://drive.google.com/file/d/1wKMAMFiUyRk5CSc7U0dCtitnSmq2psU3/view?usp=sharing
     
   # - title: "CV"
   #   url: /cv-json/
     
-  - title: "Guide"
-    url: /markdown/

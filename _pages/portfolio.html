@@ -8,7 +8,27 @@ author_profile: true
 {% include base_path %}
 
 
-{% for post in site.portfolio %}
+{% assign portfolio_items = site.portfolio | sort: 'order' %}
+{% for post in portfolio_items %}
   {% include archive-single.html %}
 {% endfor %}
+
+<hr />
+
+<h2>Some projects I worked on include:</h2>
+<ul>
+  <li>Cell Mitosis Detection using Deep Learning for Assessing Breast Cancer (CV Course Project)</li>
+  <li>CacheFuzz: Detecting Vulnerabilities in Confidential Computing Platforms</li>
+  <li>Possible Applications of ML for privacy violations in smart-devices</li>
+  <li>Effectiveness of GPT-4 on Software Engineering and Security</li>
+  <li>Twitter Bot/Political Tweet Detection (ML Course Project)</li>
+  <li>Timing Attacks on IoT devices</li>
+  <li>Covid-19: Case Surveillance and Census (DS Course Project)</li>
+  <li>TeknoSU (Fully functional e-commerce website, backend, mobile app for Software Engineering Course Project)</li>
+  <li>CampSU (Real-time Instagram-like mobile app for Mobile Programming Course Project)</li>
+  <li>SUPlay (MySQL database and website for Database Systems Course Project)</li>
+  <li>Implementation of a shortened version of RSA in MIPS architecture</li>
+  <li>Design of thermomechanical structures using topology optimization</li>
+  <li>Developing a Superabsorbent Polymer (SAP) Based Cleaning Method for Saline Soils</li>
+  </ul>
 
