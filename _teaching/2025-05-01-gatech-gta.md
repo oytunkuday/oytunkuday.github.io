@@ -11,13 +11,13 @@ excerpt: |
   
   Courses taught: 
   - CS7641 (Graduate Machine Learning, enrollment: 700)
-  - CS7641 (Game Artificial Intelligence, enrollment: 750)
+  - CS7632 (Game Artificial Intelligence, enrollment: 750)
 ---
 
 May 2025 – Now
 
 Courses taught: 
 - CS7641 (Graduate Machine Learning, enrollment: 700)
-- CS7641 (Game AI, enrollment: 750)
+- CS7632 (Game AI, enrollment: 750)
 
 

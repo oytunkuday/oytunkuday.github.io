@@ -13,7 +13,7 @@ title                    : "Oytun Kuday Duran"
 title_separator          : "-"
 name                     : &name "Oytun Kuday Duran"
 description              : &description "Oytun Kuday Duran's web page."   # Update this with a general description of your site, this is the default if not overridden by a page
-url                      : https://oytunkuday.github.io # The base hostname & protocol for your site e.g. "https://[your GitHub username].github.io",
+url                      : https://oytunkuday.com # The base hostname & protocol for your site. Must match the CNAME (custom domain) so base_path assets stay same-origin; otherwise type="module" scripts are blocked by CORS.
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "oytunkuday/oytunkuday.github.io"
@@ -26,7 +26,7 @@ author:
   avatar           : "profile.png"
   name             : "Oytun"
   pronouns         : # example: "she/her"  
-  bio              : "I am a Computer Science PhD student at Georgia Institute of Technology."
+  bio              : "PhD student, College of Computing, Georgia Tech"
   location         : "Atlanta, GA, USA"
   employer         : "Georgia Institute of Technology"
   uri              : # URL

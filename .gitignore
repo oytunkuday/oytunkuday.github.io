@@ -5,6 +5,9 @@ _site/
 # Ignore the directory for local files during development
 local/
 
+# Local-only Jekyll config override (points url at localhost; must never deploy)
+_config.dev.yml
+
 # Ignore the Gemfile that is generated
 Gemfile.lock
 

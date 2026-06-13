@@ -1,0 +1,325 @@
+/* ==========================================================================
+   site-polish.css — editorial polish layer on top of the Minimal Mistakes theme.
+   Loaded after main.css (see _includes/head/custom.html) so it wins the cascade.
+   Theme-aware via the theme's own CSS custom properties + html[data-theme="dark"].
+   ========================================================================== */
+
+/* ---- Design tokens ------------------------------------------------------- */
+:root {
+  --accent:            #b0432e;   /* terracotta */
+  --accent-2:          #c97b3c;   /* warm amber  */
+  --accent-3:          #8c2f39;   /* garnet      */
+  --bg-base:           #f3ede4;   /* warm paper  */
+  --panel:             rgba(255, 252, 247, 0.74);
+  --panel-solid:       #fffdf9;
+  --panel-border:      rgba(120, 90, 60, 0.16);
+  --rail:              rgba(176, 67, 46, 0.30);
+  --dot-ring:          var(--bg-base);
+  --masthead-bg:       rgba(255, 252, 247, 0.72);
+  --blob-1:            rgba(176, 67, 46, 0.28);
+  --blob-2:            rgba(201, 123, 60, 0.26);
+  --blob-3:            rgba(199, 122, 138, 0.22);
+  --blob-4:            rgba(120, 150, 140, 0.18);
+  --grain-opacity:     0.05;
+  /* retint the theme's link colour to the accent, site-wide */
+  --global-link-color:         var(--accent);
+  --global-link-color-hover:   var(--accent-3);
+  --global-link-color-visited: var(--accent-3);
+}
+
+html[data-theme="dark"] {
+  --accent:            #e3936b;
+  --accent-2:          #e7b27a;
+  --accent-3:          #f0b48d;
+  --bg-base:           #1e1c22;
+  --panel:             rgba(45, 42, 50, 0.55);
+  --panel-solid:       #2b2830;
+  --panel-border:      rgba(255, 255, 255, 0.09);
+  --rail:              rgba(227, 147, 107, 0.32);
+  --dot-ring:          #26242a;
+  --masthead-bg:       rgba(30, 28, 34, 0.62);
+  --blob-1:            rgba(227, 147, 107, 0.30);
+  --blob-2:            rgba(231, 178, 122, 0.22);
+  --blob-3:            rgba(150, 110, 150, 0.26);
+  --blob-4:            rgba(90, 130, 130, 0.22);
+  --grain-opacity:     0.07;
+  --global-link-color:         var(--accent);
+  --global-link-color-hover:   var(--accent-3);
+  --global-link-color-visited: var(--accent-3);
+}
+
+/* ---- Fonts --------------------------------------------------------------- */
+body {
+  font-family: "Newsreader", Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-optical-sizing: auto;
+  letter-spacing: 0.003em;
+  background: var(--bg-base);
+}
+h1, h2, h3, h4, h5, h6,
+.page__title, .archive__item-title, .author__name, .sidebar .author__name,
+.greedy-nav .visible-links a, .page__footer {
+  font-family: "Fraunces", Georgia, serif;
+  font-optical-sizing: auto;
+}
+h1, h2, h3, h4, .page__title { letter-spacing: -0.012em; font-weight: 600; }
+code, pre, kbd, samp, tt { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+/* slightly larger, airier reading column */
+.page__content { font-size: 1.06rem; line-height: 1.72; }
+.page__content p { margin: 0 0 1.15em; }
+
+/* hero greeting */
+.greeting {
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: clamp(1.7rem, 3.2vw, 2.25rem);
+  letter-spacing: -0.022em;
+  line-height: 1.05;
+  margin: 0.15rem 0 0.6rem;
+  color: var(--global-text-color);
+}
+
+/* editorial lead paragraph (first paragraph of any page) */
+.page__content > p:first-of-type {
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 1.08rem;
+  line-height: 1.62;
+  font-weight: 400;
+  color: var(--global-text-color);
+}
+.page__content > p:first-of-type::first-letter {
+  color: var(--accent);
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+}
+
+/* ---- Animated atmospheric background ------------------------------------ */
+/* gradient mesh on body::before, fine grain on body::after, both fixed */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -18%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 46% at 16% 18%, var(--blob-1) 0%, transparent 62%),
+    radial-gradient(34% 42% at 84% 12%, var(--blob-2) 0%, transparent 58%),
+    radial-gradient(46% 52% at 78% 82%, var(--blob-3) 0%, transparent 60%),
+    radial-gradient(42% 50% at 22% 88%, var(--blob-4) 0%, transparent 60%);
+  filter: blur(8px);
+  will-change: transform;
+  animation: drift 42s ease-in-out infinite alternate;
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
+}
+@keyframes drift {
+  0%   { transform: translate3d(0, 0, 0)        scale(1);    }
+  50%  { transform: translate3d(-2.5%, 1.8%, 0) scale(1.08); }
+  100% { transform: translate3d(2%, -2%, 0)     scale(1.04); }
+}
+
+/* keep all real content above the background layers */
+.masthead, #main, .page__footer { position: relative; z-index: 1; }
+
+/* ---- Frosted reading panel ---------------------------------------------- */
+#main {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 18px;
+  box-shadow: 0 18px 50px -22px rgba(40, 25, 15, 0.40);
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  padding-top: 0.6rem;
+  padding-bottom: 1.4rem;
+  -webkit-backdrop-filter: blur(10px) saturate(1.08);
+  backdrop-filter: blur(10px) saturate(1.08);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  #main { background: var(--panel-solid); }
+}
+
+/* ---- Masthead ------------------------------------------------------------ */
+.masthead {
+  background: var(--masthead-bg);
+  border-bottom: 1px solid var(--panel-border);
+  -webkit-backdrop-filter: blur(12px) saturate(1.1);
+  backdrop-filter: blur(12px) saturate(1.1);
+}
+.greedy-nav,
+.greedy-nav .visible-links,
+.masthead__menu-item,
+.masthead__menu-item a,
+#theme-toggle,
+#theme-toggle a { background: transparent; }
+.greedy-nav .visible-links a {
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.greedy-nav .visible-links a:before { background: var(--accent); height: 3px; }
+#theme-toggle a:hover #theme-icon { color: var(--accent); }
+
+/* collapsed-nav hamburger + dropdown — replace the theme's gray box */
+.greedy-nav button,
+.greedy-nav .greedy-nav__toggle {
+  background: transparent;
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.greedy-nav button:hover,
+.greedy-nav .greedy-nav__toggle:hover {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border-color: var(--accent);
+}
+.greedy-nav .navicon,
+.greedy-nav .navicon::before,
+.greedy-nav .navicon::after { background: var(--global-masthead-link-color); }
+.greedy-nav .hidden-links {
+  background: var(--panel-solid);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  box-shadow: 0 14px 34px -14px rgba(40, 25, 15, 0.45);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.greedy-nav .hidden-links a { color: var(--global-text-color); }
+.greedy-nav .hidden-links a:hover { color: var(--accent); background: transparent; }
+.greedy-nav .hidden-links::before { display: none; }
+
+/* ---- Author sidebar ------------------------------------------------------ */
+.author__avatar img {
+  border: 2px solid var(--panel-border);
+  box-shadow: 0 6px 18px -8px rgba(40, 25, 15, 0.45);
+}
+.author__name { font-weight: 600; letter-spacing: -0.01em; }
+.author__bio  { font-style: italic; opacity: 0.92; }
+
+/* ---- Links --------------------------------------------------------------- */
+.page__content a:not(.btn) {
+  text-decoration: none;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 0% 1.5px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.25s ease, color 0.2s ease;
+}
+.page__content a:not(.btn):hover { background-size: 100% 1.5px; }
+
+/* ==========================================================================
+   News timeline
+   ========================================================================== */
+.news { margin-top: 2.4rem; }
+.section-heading {
+  font-family: "Fraunces", serif;
+  font-size: 1.95rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 0 0 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.section-heading::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--panel-border), transparent);
+}
+.section-heading::before {
+  content: "";
+  width: 1.7rem;
+  height: 4px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+}
+
+.timeline { list-style: none; margin: 0; padding: 0; }
+.timeline__item {
+  display: grid;
+  grid-template-columns: 3.4rem 1fr;
+  column-gap: 1.4rem;
+  align-items: start;
+}
+.timeline__year {
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: 0.96rem;
+  color: var(--accent);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.08rem;
+  white-space: nowrap;
+}
+.timeline__text {
+  position: relative;
+  border-left: 2px solid var(--rail);
+  padding: 0 0 1.5rem 1.5rem;
+  font-size: 1.04rem;
+  line-height: 1.55;
+  transition: transform 0.22s ease;
+}
+.timeline__item:last-child .timeline__text { padding-bottom: 0.2rem; }
+.timeline__text::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 0.42em;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--dot-ring), 0 0 0 5px var(--rail);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+}
+.timeline__item:hover .timeline__text { transform: translateX(3px); }
+.timeline__item:hover .timeline__text::before {
+  transform: scale(1.35);
+  background: var(--accent-2);
+}
+.timeline__text strong { font-weight: 600; color: var(--global-text-color); }
+
+/* ==========================================================================
+   Page-load reveal (staggered) — disabled for reduced-motion users
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  .greeting,
+  .page__content > p:first-of-type,
+  .news .section-heading,
+  .timeline__item {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  }
+  .greeting { animation-delay: 0s; }
+  .page__content > p:first-of-type { animation-delay: 0.1s; }
+  .news .section-heading           { animation-delay: 0.18s; }
+  .timeline__item:nth-child(1) { animation-delay: 0.28s; }
+  .timeline__item:nth-child(2) { animation-delay: 0.36s; }
+  .timeline__item:nth-child(3) { animation-delay: 0.44s; }
+  .timeline__item:nth-child(4) { animation-delay: 0.52s; }
+  .timeline__item:nth-child(5) { animation-delay: 0.60s; }
+  .timeline__item:nth-child(6) { animation-delay: 0.68s; }
+  .timeline__item:nth-child(7) { animation-delay: 0.76s; }
+  @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  body::before { animation: none; }
+}
+
+/* ---- Small screens ------------------------------------------------------- */
+@media (max-width: 600px) {
+  #main { margin-top: 1rem; border-radius: 12px; }
+  .page__content > p:first-of-type { font-size: 1.04rem; }
+  .timeline__item { grid-template-columns: 2.9rem 1fr; column-gap: 1rem; }
+  .section-heading { font-size: 1.7rem; }
+}
