@@ -129,6 +129,10 @@ body::after {
 
 /* keep all real content above the background layers */
 .masthead, #main, .page__footer { position: relative; z-index: 1; }
+/* masthead (and its overflow/hamburger dropdown) must sit ABOVE #main,
+   otherwise the dropdown renders behind the floating content panel */
+.masthead { z-index: 30; }
+.greedy-nav .hidden-links { z-index: 31; }
 
 /* ---- Frosted reading panel ---------------------------------------------- */
 #main {
@@ -449,6 +453,35 @@ body::after {
 @media screen and (min-width: 1200px) {
   .sidebar { width: 14rem; max-width: 14rem; }
   .sidebar .author__urls li { white-space: nowrap; }
+}
+/* Mobile/tablet: drop the "Follow" toggle button and show the author links
+   inline (no floating dropdown) so the contact/social links are always visible. */
+.author__urls-wrapper button { display: none; }
+@media screen and (max-width: 1023px) {
+  .author__urls-wrapper .author__urls {
+    display: block;
+    position: static;
+    margin: 0.4rem 0 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  .author__urls-wrapper .author__urls::before,
+  .author__urls-wrapper .author__urls::after { content: none; display: none; }
+}
+/* Phones/small tablets (<925px): the theme lays the profile out as a table row
+   (tiny 36px avatar on the left). Stack it instead — large avatar on top,
+   then name, bio, and links, all centered. */
+@media screen and (max-width: 924px) {
+  .author__avatar { display: block; width: 116px; margin: 0 auto 0.85rem; padding: 0; float: none; }
+  .author__avatar img { width: 116px; height: 116px; max-width: 116px; border-radius: 50%; object-fit: cover; display: block; }
+  .author__content { display: block; text-align: center; }
+  .author__name, .author__bio { text-align: center; }
+  .author__bio { margin-top: 0.15rem; }
+  .author__urls-wrapper { display: block; text-align: center; }
+  .author__urls { text-align: center; }
+  .author__urls li { display: block; }
 }
 
 /* ==========================================================================
