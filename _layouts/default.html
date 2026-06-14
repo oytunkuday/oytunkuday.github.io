@@ -5,13 +5,15 @@ layout: compress
 {% include base_path %}
 
 <!doctype html>
-<html lang="{{ site.locale | slice: 0,2 }}" class="no-js"{% if site.site_theme == "dark" %} data-theme="dark"{% endif %}>
+<html lang="{{ site.locale | slice: 0,2 }}" class="no-js" data-theme="dark">
   <head>
     {% include head.html %}
     {% include head/custom.html %}
   </head>
 
   <body>
+
+    <div id="constellation-drift" aria-hidden="true"><div class="cd-field cd-field--a"></div><div class="cd-field cd-field--b"></div></div>
 
     {% include browser-upgrade.html %}
     {% include masthead.html %}
@@ -26,6 +28,55 @@ layout: compress
     </div>
 
     {% include scripts.html %}
+
+    <!-- Night-sky constellation: generate stars into two parallax layers -->
+    <script>
+    (function () {
+      var host = document.getElementById('constellation-drift');
+      if (!host) return;
+      var a = host.querySelector('.cd-field--a'), b = host.querySelector('.cd-field--b');
+      if (!a || !b) return;
+      var rmq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      function rnd(min, max) { return min + Math.random() * (max - min); }
+      function makeStars(field, count, opts) {
+        var frag = document.createDocumentFragment();
+        for (var i = 0; i < count; i++) {
+          var s = document.createElement('i');
+          var cls = 'cd-star';
+          if (Math.random() < opts.lg) cls += ' cd-lg';
+          if (Math.random() < 0.14) cls += ' cd-warm';
+          s.className = cls;
+          s.style.setProperty('--x', rnd(0, 100).toFixed(2) + '%');
+          s.style.setProperty('--y', rnd(0, 100).toFixed(2) + '%');
+          s.style.setProperty('--s', rnd(opts.min, opts.max).toFixed(2) + 'px');
+          s.style.setProperty('--d', rnd(4.5, 8.5).toFixed(2) + 's');
+          s.style.setProperty('--t', (-rnd(0, 8)).toFixed(2) + 's');
+          frag.appendChild(s);
+        }
+        field.appendChild(frag);
+      }
+      makeStars(a, 38, { min: 1.6, max: 2.8, lg: 0.4 });   // nearer / larger
+      makeStars(b, 30, { min: 1.0, max: 1.8, lg: 0.1 });   // farther / smaller
+      function canShoot() {
+        return !document.hidden && !rmq.matches &&
+               document.documentElement.dataset.theme === 'dark';
+      }
+      function spawnShoot() {
+        if (!canShoot()) return;
+        var s = document.createElement('i');
+        s.className = 'cd-shoot';
+        s.style.setProperty('--sx', (8 + Math.random() * 64) + '%');
+        s.style.setProperty('--sy', (4 + Math.random() * 34) + '%');
+        a.appendChild(s);
+        s.addEventListener('animationend', function () { if (s.parentNode) s.parentNode.removeChild(s); });
+      }
+      function schedule() {
+        var delay = 6000 + Math.random() * 8000;   // ~6-14s — noticeably more frequent
+        setTimeout(function () { spawnShoot(); schedule(); }, delay);
+      }
+      if (!rmq.matches) { setTimeout(spawnShoot, 2200); schedule(); }  // one shortly after load
+    })();
+    </script>
 
   </body>
 </html>

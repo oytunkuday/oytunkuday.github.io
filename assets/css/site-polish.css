@@ -168,6 +168,33 @@ body::after {
 .greedy-nav .visible-links a:before { background: var(--accent); height: 3px; }
 #theme-toggle a:hover #theme-icon { color: var(--accent); }
 
+/* ---- Masthead layout & spacing -------------------------------------------
+   Even spacing between route links; brand left, links + toggle grouped right.
+   .visible-links MUST stay content-sized (inline-flex, NOT block) so the
+   greedy-nav JS overflow/collapse measurement still works. */
+.masthead__inner-wrap { padding-top: 0.7em; padding-bottom: 0.7em; }
+.greedy-nav .visible-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+.greedy-nav .visible-links li { display: flex; align-items: center; }
+.greedy-nav .visible-links a { margin: 0; padding: 0.45rem 0; }
+.greedy-nav .visible-links .masthead__menu-item--lg {
+  padding-right: 0;
+  margin-right: 2.6rem;
+}
+.greedy-nav .visible-links .masthead__menu-item--lg a {
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+}
+.greedy-nav .visible-links #theme-toggle { margin-left: 0.4rem; }
+.greedy-nav .visible-links #theme-toggle a {
+  align-items: center;
+  padding: 0.45rem 0;
+  line-height: 1;
+}
+
 /* collapsed-nav hamburger + dropdown — replace the theme's gray box */
 .greedy-nav button,
 .greedy-nav .greedy-nav__toggle {
@@ -288,6 +315,85 @@ body::after {
 }
 .timeline__text strong { font-weight: 600; color: var(--global-text-color); }
 
+/* ---- Expandable news (first 4 shown; rest behind "Show more") ------------ */
+.news-toggle-cb {            /* visually hidden but focusable */
+  position: absolute;
+  width: 1px; height: 1px;
+  opacity: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.timeline__item.news-extra { display: none; }
+.news-toggle-cb:checked ~ .timeline .timeline__item.news-extra {
+  display: grid;
+  opacity: 1;                /* override the page-load reveal state */
+  transform: none;
+  animation: none;
+}
+/* the control: a vertical 3-dot affordance that animates and reveals its
+   label ("read more news") on hover. It's a <label> (clickable, no JS). */
+.news-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0.4rem 0 0 4.55rem;  /* align under the timeline text column */
+  padding: 0.2rem 0.25rem;
+  color: var(--accent);
+  font-family: "Fraunces", serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.news-more__dots {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  transition: transform 0.3s ease;
+}
+.news-more__dots i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform 0.25s ease;
+}
+/* hover: gentle staggered bounce of the dots */
+.news-more:hover .news-more__dots i { animation: newsDot 0.7s ease-in-out infinite; }
+.news-more:hover .news-more__dots i:nth-child(2) { animation-delay: 0.12s; }
+.news-more:hover .news-more__dots i:nth-child(3) { animation-delay: 0.24s; }
+@keyframes newsDot {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-2px) scale(1.3); }
+}
+/* label text — hidden until hover, then slides + fades in */
+.news-more__t {
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  white-space: nowrap;
+  transition: max-width 0.32s ease, opacity 0.25s ease;
+}
+.news-more__t--less { display: none; }
+.news-more:hover .news-more__t--more { max-width: 14ch; opacity: 1; }
+/* expanded: swap label to "show less" (dots stay vertical) */
+.news-toggle-cb:checked ~ .news-more .news-more__t--more { display: none; }
+.news-toggle-cb:checked ~ .news-more .news-more__t--less { display: inline; }
+.news-toggle-cb:checked ~ .news-more:hover .news-more__t--less { max-width: 14ch; opacity: 1; }
+/* keyboard focus ring on the dots */
+.news-toggle-cb:focus-visible ~ .news-more .news-more__dots {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .news-more:hover .news-more__dots i { animation: none; }
+}
+
 /* ==========================================================================
    Page-load reveal (staggered) — disabled for reduced-motion users
    ========================================================================== */
@@ -322,4 +428,100 @@ body::after {
   .page__content > p:first-of-type { font-size: 1.04rem; }
   .timeline__item { grid-template-columns: 2.9rem 1fr; column-gap: 1rem; }
   .section-heading { font-size: 1.7rem; }
+  .news-more { margin-left: 3.9rem; }
+}
+
+/* ==========================================================================
+   Sidebar fit fix — let long links WRAP instead of forcing one line.
+   The theme's `.author__urls li { white-space: nowrap }` kept "Georgia
+   Institute of Technology" on one line, overflowing the percentage-width
+   sidebar; combined with `.sidebar { overflow-y: auto }` that produced a
+   horizontal scrollbar. Allowing the link to wrap fixes it with NO width
+   change, so the content column never overlaps the sidebar (at any width).
+   ========================================================================== */
+.sidebar .author__urls li { white-space: normal; }
+.sidebar .author__urls li a { display: inline-block; line-height: 1.3; }
+.sidebar { overflow-x: hidden; }
+/* On wide desktops (>=1200px) the fixed sidebar can grow enough for the
+   employer name to sit on ONE line while staying clear of the content text
+   (there's ~60px of dead space before it). Below 1200px the column is too
+   narrow, so the link keeps wrapping (rule above). */
+@media screen and (min-width: 1200px) {
+  .sidebar { width: 14rem; max-width: 14rem; }
+  .sidebar .author__urls li { white-space: nowrap; }
+}
+
+/* ==========================================================================
+   Night sky — constellation drift (dark mode only). The inline script in
+   _layouts/default.html fills .cd-field--a / --b with stars; the two layers
+   drift slowly in opposite directions (parallax), stars twinkle, and a rare
+   shooting star crosses. Layered above body::before/::after (z-index 0),
+   below content (z-index 1). Disabled under prefers-reduced-motion.
+   ========================================================================== */
+#constellation-drift { display: none; }
+html[data-theme="dark"] #constellation-drift {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  contain: strict;
+}
+html[data-theme="dark"] #constellation-drift .cd-field {
+  position: absolute;
+  inset: -3%;
+  will-change: transform;
+}
+html[data-theme="dark"] #constellation-drift .cd-field--a { animation: cd-drift-a 70s ease-in-out infinite alternate; }
+html[data-theme="dark"] #constellation-drift .cd-field--b { animation: cd-drift-b 56s ease-in-out infinite alternate; }
+html[data-theme="dark"] #constellation-drift .cd-star {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--s, 1.6px);
+  height: var(--s, 1.6px);
+  border-radius: 50%;
+  background: rgba(255, 253, 248, 0.92);
+  box-shadow: 0 0 4px 1px rgba(255, 253, 248, 0.5), 0 0 9px 2px rgba(214, 226, 255, 0.18);
+  filter: blur(0.4px);
+  opacity: 0.5;
+  will-change: opacity, transform;
+  animation: cd-twinkle var(--d, 6s) ease-in-out infinite;
+  animation-delay: var(--t, 0s);
+}
+html[data-theme="dark"] #constellation-drift .cd-star.cd-lg {
+  box-shadow: 0 0 6px 1.5px rgba(255, 253, 248, 0.6), 0 0 14px 3px rgba(214, 226, 255, 0.2);
+  filter: blur(0.5px);
+}
+html[data-theme="dark"] #constellation-drift .cd-star.cd-warm {
+  background: rgba(247, 217, 198, 0.92);
+  box-shadow: 0 0 5px 1px rgba(227, 147, 107, 0.4), 0 0 12px 3px rgba(227, 147, 107, 0.15);
+}
+html[data-theme="dark"] #constellation-drift .cd-shoot {
+  position: absolute;
+  top: var(--sy);
+  left: var(--sx);
+  width: 90px;
+  height: 1.5px;
+  background: linear-gradient(90deg, rgba(255, 253, 248, 0) 0%, rgba(255, 253, 248, 0.85) 60%, rgba(255, 253, 248, 0.98) 100%);
+  border-radius: 1px;
+  opacity: 0;
+  transform: rotate(18deg);
+  filter: blur(0.4px) drop-shadow(0 0 5px rgba(255, 253, 248, 0.6));
+  will-change: transform, opacity;
+  animation: cd-shoot 1.5s cubic-bezier(0.3, 0.1, 0.2, 1) forwards;
+}
+@keyframes cd-twinkle { 0%, 100% { opacity: 0.3; transform: scale(0.92); } 50% { opacity: 0.95; transform: scale(1.06); } }
+@keyframes cd-drift-a { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(3.8%, 2.6%, 0); } }
+@keyframes cd-drift-b { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-3.2%, -2.2%, 0); } }
+@keyframes cd-shoot {
+  0%   { opacity: 0;    transform: rotate(18deg) translateX(0)    scaleX(0.4); }
+  10%  { opacity: 0.95; transform: rotate(18deg) translateX(24px) scaleX(1); }
+  100% { opacity: 0;    transform: rotate(18deg) translateX(320px) scaleX(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="dark"] #constellation-drift .cd-field { animation: none; }
+  html[data-theme="dark"] #constellation-drift .cd-star { animation: none; opacity: 0.6; }
+  html[data-theme="dark"] #constellation-drift .cd-shoot { display: none; }
 }
