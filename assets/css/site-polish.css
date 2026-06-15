@@ -32,7 +32,7 @@ html[data-theme="dark"] {
   --accent-2:          #e7b27a;
   --accent-3:          #f0b48d;
   --bg-base:           #1e1c22;
-  --panel:             rgba(45, 42, 50, 0.55);
+  --panel:             rgba(34, 31, 40, 0.40);   /* obsidian-style translucent glass */
   --panel-solid:       #2b2830;
   --panel-border:      rgba(255, 255, 255, 0.09);
   --rail:              rgba(227, 147, 107, 0.32);
@@ -149,6 +149,14 @@ body::after {
 }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   #main { background: var(--panel-solid); }
+}
+/* Night mode: more transparent "obsidian glass" — stronger blur reads through
+   the translucent panel while keeping text legible, plus a faint top highlight. */
+html[data-theme="dark"] #main {
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
+  backdrop-filter: blur(18px) saturate(1.15);
+  box-shadow: 0 18px 60px -24px rgba(0, 0, 0, 0.6),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 /* ---- Masthead ------------------------------------------------------------ */
