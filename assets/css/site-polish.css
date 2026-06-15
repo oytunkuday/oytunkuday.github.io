@@ -89,7 +89,7 @@ code, pre, kbd, samp, tt { font-family: "JetBrains Mono", ui-monospace, SFMono-R
   color: var(--global-text-color);
 }
 .page__content > p:first-of-type::first-letter {
-  color: var(--accent);
+  color: var(--global-text-color);
   font-family: "Fraunces", serif;
   font-weight: 600;
 }

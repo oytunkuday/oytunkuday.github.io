@@ -16,7 +16,7 @@ My research interests include systems, architecture, and machine learning.
 
 Currently, I am working on system/transformer-level optimizations on LLMs to reduce memory footprint.
 
-I am extremely fortunate to work with [Prof. Celine Lin](https://www.cc.gatech.edu/people/yingyan-celine-lin) and [Prof. Anand Iyer](https://www.anand-iyer.com).
+I am extremely fortunate to be advised by [Prof. Celine Lin](https://www.cc.gatech.edu/people/yingyan-celine-lin) and [Prof. Anand Iyer](https://www.anand-iyer.com).
 
 <section class="news" markdown="0">
 <h2 class="section-heading">News</h2>
