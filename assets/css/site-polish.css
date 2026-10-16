@@ -1,45 +1,59 @@
 /* ==========================================================================
-   site-polish.css — editorial polish layer on top of the Minimal Mistakes theme.
+   site-polish.css — polish layer on top of the Minimal Mistakes theme.
    Loaded after main.css (see _includes/head/custom.html) so it wins the cascade.
    Theme-aware via the theme's own CSS custom properties + html[data-theme="dark"].
+   Light mode = no data-theme attribute, so light-only rules are scoped with
+   html:not([data-theme="dark"]).
    ========================================================================== */
 
 /* ---- Design tokens ------------------------------------------------------- */
 :root {
-  --accent:            #b0432e;   /* terracotta */
-  --accent-2:          #c97b3c;   /* warm amber  */
-  --accent-3:          #8c2f39;   /* garnet      */
-  --bg-base:           #f3ede4;   /* warm paper  */
-  --panel:             rgba(255, 252, 247, 0.74);
-  --panel-solid:       #fffdf9;
-  --panel-border:      rgba(120, 90, 60, 0.16);
-  --rail:              rgba(176, 67, 46, 0.30);
-  --dot-ring:          var(--bg-base);
-  --masthead-bg:       rgba(255, 252, 247, 0.72);
-  --blob-1:            rgba(176, 67, 46, 0.28);
-  --blob-2:            rgba(201, 123, 60, 0.26);
-  --blob-3:            rgba(199, 122, 138, 0.22);
-  --blob-4:            rgba(120, 150, 140, 0.18);
-  --grain-opacity:     0.05;
+  --accent:            #4f46e5;   /* indigo  */
+  --accent-2:          #7c3aed;   /* violet  */
+  --accent-3:          #4338ca;   /* deep indigo (hover) */
+  --bg-base:           #f6f7fb;   /* cool off-white */
+  --panel:             rgba(255, 255, 255, 0.72);
+  --panel-solid:       #ffffff;
+  --panel-border:      rgba(15, 23, 42, 0.08);
+  --rail:              rgba(99, 102, 241, 0.24);
+  --dot-ring:          #fdfdff;
+  --masthead-bg:       rgba(255, 255, 255, 0.70);
+  --shadow-rgb:        15, 23, 42;   /* slate-900 */
+  --blob-1:            rgba(99, 102, 241, 0.16);   /* indigo */
+  --blob-2:            rgba(56, 189, 248, 0.14);   /* sky    */
+  --blob-3:            rgba(168, 85, 247, 0.12);   /* purple */
+  --blob-4:            rgba(45, 212, 191, 0.08);   /* teal   */
+  --grain-opacity:     0;
   /* retint the theme's link colour to the accent, site-wide */
   --global-link-color:         var(--accent);
   --global-link-color-hover:   var(--accent-3);
   --global-link-color-visited: var(--accent-3);
+  /* cooler slate text + chrome for light mode (dark theme overrides these) */
+  --global-text-color:              #1e293b;
+  --global-text-color-light:        #64748b;
+  --global-masthead-link-color:     #334155;
+  --global-masthead-link-color-hover: var(--accent);
+  --global-border-color:            #e2e8f0;
+  --global-dark-border-color:       #e2e8f0;
+  --global-footer-bg-color:         transparent;
 }
 
+html:not([data-theme="dark"]) .page__footer { --global-text-color-light: #475569; }
+
 html[data-theme="dark"] {
-  --accent:            #e3936b;
-  --accent-2:          #e7b27a;
-  --accent-3:          #f0b48d;
+  --accent:            #93b4ff;   /* light periwinkle blue */
+  --accent-2:          #b9a2ff;   /* lavender */
+  --accent-3:          #c9bbff;   /* hover */
   --bg-base:           #1e1c22;
   --panel:             rgba(34, 31, 40, 0.40);   /* obsidian-style translucent glass */
   --panel-solid:       #2b2830;
   --panel-border:      rgba(255, 255, 255, 0.09);
-  --rail:              rgba(227, 147, 107, 0.32);
+  --rail:              rgba(147, 180, 255, 0.30);
   --dot-ring:          #26242a;
   --masthead-bg:       rgba(30, 28, 34, 0.62);
-  --blob-1:            rgba(227, 147, 107, 0.30);
-  --blob-2:            rgba(231, 178, 122, 0.22);
+  --shadow-rgb:        6, 6, 14;
+  --blob-1:            rgba(110, 145, 255, 0.26);
+  --blob-2:            rgba(165, 130, 255, 0.22);
   --blob-3:            rgba(150, 110, 150, 0.26);
   --blob-4:            rgba(90, 130, 130, 0.22);
   --grain-opacity:     0.07;
@@ -127,6 +141,16 @@ body::after {
   100% { transform: translate3d(2%, -2%, 0)     scale(1.04); }
 }
 
+/* Day mode: swap the paper grain for a fine dot grid that fades out
+   below the masthead (dark mode keeps the grain). */
+html:not([data-theme="dark"]) body::after {
+  opacity: 1;
+  background-image: radial-gradient(rgba(var(--shadow-rgb), 0.10) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(120% 70% at 50% 0%, #000 0%, transparent 70%);
+  mask-image: radial-gradient(120% 70% at 50% 0%, #000 0%, transparent 70%);
+}
+
 /* keep all real content above the background layers */
 .masthead, #main, .page__footer { position: relative; z-index: 1; }
 /* masthead (and its overflow/hamburger dropdown) must sit ABOVE #main,
@@ -139,7 +163,7 @@ body::after {
   background: var(--panel);
   border: 1px solid var(--panel-border);
   border-radius: 18px;
-  box-shadow: 0 18px 50px -22px rgba(40, 25, 15, 0.40);
+  box-shadow: 0 1px 2px rgba(var(--shadow-rgb), 0.04), 0 18px 48px -24px rgba(var(--shadow-rgb), 0.22);
   margin-top: 2rem;
   margin-bottom: 3rem;
   padding-top: 0.6rem;
@@ -223,11 +247,12 @@ html[data-theme="dark"] #main {
 .greedy-nav .navicon,
 .greedy-nav .navicon::before,
 .greedy-nav .navicon::after { background: var(--global-masthead-link-color); }
+.greedy-nav .close .navicon { background: transparent; }
 .greedy-nav .hidden-links {
   background: var(--panel-solid);
   border: 1px solid var(--panel-border);
   border-radius: 12px;
-  box-shadow: 0 14px 34px -14px rgba(40, 25, 15, 0.45);
+  box-shadow: 0 14px 34px -14px rgba(var(--shadow-rgb), 0.35);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
@@ -238,7 +263,7 @@ html[data-theme="dark"] #main {
 /* ---- Author sidebar ------------------------------------------------------ */
 .author__avatar img {
   border: 2px solid var(--panel-border);
-  box-shadow: 0 6px 18px -8px rgba(40, 25, 15, 0.45);
+  box-shadow: 0 6px 18px -8px rgba(var(--shadow-rgb), 0.40);
 }
 .author__name { font-weight: 600; letter-spacing: -0.01em; }
 .author__bio  { font-style: italic; opacity: 0.92; }
@@ -253,6 +278,11 @@ html[data-theme="dark"] #main {
   transition: background-size 0.25s ease, color 0.2s ease;
 }
 .page__content a:not(.btn):hover { background-size: 100% 1.5px; }
+/* replace the theme's orange (#f89406) a:focus ring: keyboard-only, accent-coloured */
+a:focus:not(:focus-visible) { outline: none; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; }
+/* .sidebar clips overflow, so keep the ring inset there */
+.sidebar a:focus-visible { outline-offset: -2px; }
 
 /* ==========================================================================
    News timeline
@@ -274,6 +304,7 @@ html[data-theme="dark"] #main {
   height: 1px;
   background: linear-gradient(90deg, var(--panel-border), transparent);
 }
+.page__content h2.section-heading { border-bottom: 0; padding-bottom: 0; }
 .section-heading::before {
   content: "";
   width: 1.7rem;
@@ -326,6 +357,7 @@ html[data-theme="dark"] #main {
   background: var(--accent-2);
 }
 .timeline__text strong { font-weight: 600; color: var(--global-text-color); }
+.timeline__text a { color: var(--accent); font-weight: 500; }
 
 /* ---- Expandable news (first 4 shown; rest behind "Show more") ------------ */
 .news-toggle-cb {            /* visually hidden but focusable */
@@ -349,7 +381,7 @@ html[data-theme="dark"] #main {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  margin: 0.4rem 0 0 4.55rem;  /* align under the timeline text column */
+  margin: 0.4rem 0 0 calc(4.55rem - 1px);  /* dots centred on the timeline rail */
   padding: 0.2rem 0.25rem;
   color: var(--accent);
   font-family: "Fraunces", serif;
@@ -440,7 +472,7 @@ html[data-theme="dark"] #main {
   .page__content > p:first-of-type { font-size: 1.04rem; }
   .timeline__item { grid-template-columns: 2.9rem 1fr; column-gap: 1rem; }
   .section-heading { font-size: 1.7rem; }
-  .news-more { margin-left: 3.9rem; }
+  .news-more { margin-left: calc(3.65rem - 1px); }
 }
 
 /* ==========================================================================
@@ -536,8 +568,8 @@ html[data-theme="dark"] #constellation-drift .cd-star.cd-lg {
   filter: blur(0.5px);
 }
 html[data-theme="dark"] #constellation-drift .cd-star.cd-warm {
-  background: rgba(247, 217, 198, 0.92);
-  box-shadow: 0 0 5px 1px rgba(227, 147, 107, 0.4), 0 0 12px 3px rgba(227, 147, 107, 0.15);
+  background: rgba(222, 214, 255, 0.92);
+  box-shadow: 0 0 5px 1px rgba(170, 150, 255, 0.4), 0 0 12px 3px rgba(147, 180, 255, 0.15);
 }
 html[data-theme="dark"] #constellation-drift .cd-shoot {
   position: absolute;

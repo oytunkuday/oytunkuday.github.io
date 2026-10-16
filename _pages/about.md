@@ -22,10 +22,11 @@ I am extremely fortunate to be advised by [Prof. Celine Lin](https://www.cc.gate
 <h2 class="section-heading">News</h2>
 <input type="checkbox" id="news-toggle" class="news-toggle-cb">
 <ol class="timeline">
+  <li class="timeline__item"><span class="timeline__year">2026</span><div class="timeline__text">My interview was featured on the <a href="https://www.cc.gatech.edu/news/cs-phd-student-gains-industry-insight-apple" target="_blank" rel="noopener">GT College of Computing homepage</a>!</div></li>
   <li class="timeline__item"><span class="timeline__year">2026</span><div class="timeline__text">Accepted an offer for a summer internship at <strong>Apple</strong>!</div></li>
   <li class="timeline__item"><span class="timeline__year">2026</span><div class="timeline__text">Serving on the Artifact Evaluation Committee for <strong>OSDI&nbsp;2026</strong>.</div></li>
   <li class="timeline__item"><span class="timeline__year">2025</span><div class="timeline__text">We received a best-paper award at ACM&nbsp;CCS&nbsp;2025 for our work on <strong>WireTap</strong>.</div></li>
-  <li class="timeline__item"><span class="timeline__year">2025</span><div class="timeline__text">Won the <strong>Georgia Tech Summer AI Agent Tournament</strong>.</div></li>
+  <li class="timeline__item news-extra"><span class="timeline__year">2025</span><div class="timeline__text">Won the <strong>Georgia Tech Summer AI Agent Tournament</strong>.</div></li>
   <li class="timeline__item news-extra"><span class="timeline__year">2024</span><div class="timeline__text">Graduated from <strong>Sabancı University</strong>; continuing my graduate studies at <strong>Georgia Tech</strong>.</div></li>
   <li class="timeline__item news-extra"><span class="timeline__year">2024</span><div class="timeline__text">Selected as an <strong>EPFL Research Scholar</strong> (MSc).</div></li>
   <li class="timeline__item news-extra"><span class="timeline__year">2024</span><div class="timeline__text">Awarded the <strong>Sakıp Sabancı Encouragement Scholarship</strong> in Electronics Engineering.</div></li>
