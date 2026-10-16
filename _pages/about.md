@@ -10,7 +10,7 @@ redirect_from:
 
 <div class="greeting" markdown="0">Hi!</div>
 
-I am a Ph.D. Student in Computer Science at Georgia Institute of Technology. I am from Istanbul, Turkey and I have received my undergraduate degrees (CS,EE) in Sabanci University. Some of my hobbies include photography, diving, camping, gaming, art, hiking.
+I am a Ph.D. Student in Computer Science at Georgia Institute of Technology. I am from Istanbul, Turkey and I have received my undergraduate degrees (CS,EE) in Sabanci University. Some of my hobbies include photography, diving, camping, gaming, western art, hiking, DJing.
 
 My research interests include systems, architecture, and machine learning.
 
